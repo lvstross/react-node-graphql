@@ -21,6 +21,8 @@ exports.typeDefs = `
 
   type Query {
     getAllRecipes: [Recipe]
+
+    getCurrentUser: User
   }
 
   type Token {
@@ -35,6 +37,11 @@ exports.typeDefs = `
       instructions: String!
       username: String
     ): Recipe
+
+    signinUser(
+      username: String!
+      password: String!
+    ): Token
 
     signupUser(
       username: String!
