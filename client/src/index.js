@@ -6,6 +6,11 @@ import App from './components/App';
 import SignIn from './components/Auth/SignIn';
 import SignUp from './components/Auth/SignUp';
 import withSession from './components/withSession';
+import Navbar from './components/Navbar';
+import Search from './components/Recipe/Search';
+import AddRecipe from './components/Recipe/AddRecipe';
+import Profile from './components/Profile/Profile';
+
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
 
@@ -36,12 +41,18 @@ const client = new ApolloClient({
 const Root = ({ refetch }) => {
   return (
     <Router>
+      <React.Fragment>
+      <Navbar />
       <Switch>
         <Route path="/" exact component={App} />
+        <Route path="/search" component={Search} />
         <Route path="/signin" render={() => <SignIn refetch={refetch}/>} />
         <Route path="/signup" render={() => <SignUp refetch={refetch}/>} />
+        <Route path="/recipe/add" component={AddRecipe} />
+        <Route path="/profile" component={Profile} />
         <Redirect to="/" />
       </Switch>
+    </React.Fragment>
     </Router>
   );
 };
